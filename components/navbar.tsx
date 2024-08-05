@@ -78,7 +78,7 @@ const Navbar = () => {
 
       {/* Dropdown menu for smaller screens */}
       {menuOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 lg:hidden flex flex-col items-center z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 lg:hidden flex flex-col items-center z-50 mb-10">
           <Link href={"#"} className="whitespace-nowrap p-2">
             Pricing
           </Link>
