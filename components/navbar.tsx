@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { ArrowRight, Menu, Sun, X } from "lucide-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -12,12 +13,11 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    console.log(menuOpen);
   };
 
   useEffect(() => {
     // Define the media query
-    const mediaQuery = window.matchMedia("(min-width: 768px)"); // Adjust to your breakpoint for medium size screens
+    const mediaQuery = window.matchMedia("(min-width: 945px)"); // Adjust to your breakpoint for medium size screens
 
     // Function to handle media query changes
     const handleResize = (event: MediaQueryListEvent) => {
@@ -43,33 +43,41 @@ const Navbar = () => {
         <h1 className="m-2 p-5 whitespace-nowrap">Facilitator Pro</h1>
 
         {/* Links for larger screens */}
-        <div className="hidden md:flex flex-nowrap m-2 p-5 gap-10">
-          <Link href={"/#pricing"} scroll={true} className="whitespace-nowrap">
+        <div className="hidden lg:flex flex-nowrap m-2 p-5 gap-10">
+          <Link
+            href={"/"}
+            scroll={true}
+            className="whitespace-nowrap"
+            onClick={() => {
+              const pricing = document.getElementById("pricing");
+              pricing?.scrollIntoView({ behavior: "smooth" });
+              history.replaceState(null, "", "");
+              setMenuOpen(false);
+            }}
+          >
             Pricing
           </Link>
           <Link href={"/dashboard"} className="whitespace-nowrap">
             Dashboard
           </Link>
-          <Link href={"/sign-in"} className="whitespace-nowrap">
-            Sign In
-          </Link>
-          <Link href={"/sign-up"} className="whitespace-nowrap">
-            Register
-          </Link>
-        </div>
-
-        {/* Buttons for larger screens */}
-        <div className="hidden md:flex gap-2 m-10 justify-end">
-          <Button variant="ghost">
-            Go to dashboard <ArrowRight className="mr-2 h-4 w-4" />
-          </Button>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <Link href={"/sign-in"} className="whitespace-nowrap p-2">
+              Sign In
+            </Link>
+            <Link href={"/sign-up"} className="whitespace-nowrap p-2">
+              Register
+            </Link>
+          </SignedOut>
           <Button variant="ghost">
             <Sun />
           </Button>
         </div>
 
         {/* Menu button for smaller screens */}
-        <div className="md:hidden m-2 p-5">
+        <div className="mNav:hidden m-2 p-5">
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
             {menuOpen ? <X /> : <Menu />}
           </Button>
@@ -78,27 +86,35 @@ const Navbar = () => {
 
       {/* Dropdown menu for smaller screens */}
       {menuOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 lg:hidden flex flex-col items-center z-50 mb-10">
+        <div className="absolute top-full left-0 right-0 mt-2 lg:hidden flex flex-col flex-wrap items-center z-50 mb-10">
           <Link
-            href={"/#pricing"}
+            href={"/"}
             scroll={true}
             className="whitespace-nowrap p-2"
+            onClick={() => {
+              const pricing = document.getElementById("pricing");
+              pricing?.scrollIntoView({ behavior: "smooth" });
+              history.replaceState(null, "", "");
+              setMenuOpen(false);
+            }}
           >
             Pricing
           </Link>
           <Link href={"/dashboard"} className="whitespace-nowrap p-2">
             Dashboard
           </Link>
-          <Link href={"/sign-in"} className="whitespace-nowrap p-2">
-            Sign In
-          </Link>
-          <Link href={"/sign-up"} className="whitespace-nowrap p-2">
-            Register
-          </Link>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <Link href={"/sign-in"} className="whitespace-nowrap p-2">
+              Sign In
+            </Link>
+            <Link href={"/sign-up"} className="whitespace-nowrap p-2">
+              Register
+            </Link>
+          </SignedOut>
           <div className="flex flex-col justify-center items-center gap-2 p-2">
-            <Button variant="outline">
-              Go to dashboard <ArrowRight className=" h-4 w-6" />
-            </Button>
             <Button variant="ghost">
               <Sun />
             </Button>

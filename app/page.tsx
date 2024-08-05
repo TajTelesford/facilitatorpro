@@ -6,10 +6,12 @@ import { Building2, ChartNoAxesCombined, Repeat2 } from "lucide-react";
 import Image from "next/image";
 import { FacilitatorProTiers, PricingCardProps } from "./api/util";
 import PricingCard from "@/components/pricingcard";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import PricingSection from "@/components/pricingsection";
 
 export default function Home() {
-  const pricingInfo: PricingCardProps[] = FacilitatorProTiers();
-
   return (
     <div>
       <Navbar />
@@ -46,22 +48,8 @@ export default function Home() {
         </div>
       </div>
       {/* Pricing Section */}
-      <div
-        id="pricing"
-        className="flex flex-wrap md:flex-nowrap items-center space-between justify-center  gap-5 m-10"
-      >
-        {pricingInfo &&
-          pricingInfo.map((info, idx) => (
-            <PricingCard
-              key={idx}
-              icon={info.icon}
-              BillingPlan={info.BillingPlan}
-              MonthlyBilling={info.MonthlyBilling}
-              YearlyBilling={info.YearlyBilling}
-              TierOffers={info.TierOffers}
-            />
-          ))}
-      </div>
+      <PricingSection />
+
       {/* TODO: Contact Section */}
       <div></div>
     </div>
