@@ -1,10 +1,15 @@
 import DescriptionCardWithIcon from "@/components/descriptioncardicon";
 import Navbar from "@/components/navbar";
+
 import { Button } from "@/components/ui/button";
 import { Building2, ChartNoAxesCombined, Repeat2 } from "lucide-react";
 import Image from "next/image";
+import { FacilitatorProTiers, PricingCardProps } from "./api/util";
+import PricingCard from "@/components/pricingcard";
 
 export default function Home() {
+  const pricingInfo: PricingCardProps[] = FacilitatorProTiers();
+
   return (
     <div>
       <Navbar />
@@ -41,8 +46,19 @@ export default function Home() {
         </div>
       </div>
       {/* Pricing Section */}
-      <div></div>
-      {/* Contact Section */}
+      <div className="flex flex-wrap md:flex-nowrap items-center space-between justify-center  gap-5 m-10">
+        {pricingInfo &&
+          pricingInfo.map((info) => (
+            <PricingCard
+              icon={info.icon}
+              BillingPlan={info.BillingPlan}
+              MonthlyBilling={info.MonthlyBilling}
+              YearlyBilling={info.YearlyBilling}
+              TierOffers={info.TierOffers}
+            />
+          ))}
+      </div>
+      {/* TODO: Contact Section */}
       <div></div>
     </div>
   );
