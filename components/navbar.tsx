@@ -44,16 +44,16 @@ const Navbar = () => {
 
         {/* Links for larger screens */}
         <div className="hidden md:flex flex-nowrap m-2 p-5 gap-10">
-          <Link href={"#"} className="whitespace-nowrap">
+          <Link href={"/#pricing"} scroll={true} className="whitespace-nowrap">
             Pricing
           </Link>
-          <Link href={"#"} className="whitespace-nowrap">
+          <Link href={"/dashboard"} className="whitespace-nowrap">
             Dashboard
           </Link>
-          <Link href={"#"} className="whitespace-nowrap">
+          <Link href={"/sign-in"} className="whitespace-nowrap">
             Sign In
           </Link>
-          <Link href={"#"} className="whitespace-nowrap">
+          <Link href={"/sign-up"} className="whitespace-nowrap">
             Register
           </Link>
         </div>
@@ -79,20 +79,24 @@ const Navbar = () => {
       {/* Dropdown menu for smaller screens */}
       {menuOpen && (
         <div className="absolute top-full left-0 right-0 mt-2 lg:hidden flex flex-col items-center z-50 mb-10">
-          <Link href={"#"} className="whitespace-nowrap p-2">
+          <Link
+            href={"/#pricing"}
+            scroll={true}
+            className="whitespace-nowrap p-2"
+          >
             Pricing
           </Link>
-          <Link href={"#"} className="whitespace-nowrap p-2">
+          <Link href={"/dashboard"} className="whitespace-nowrap p-2">
             Dashboard
           </Link>
-          <Link href={"#"} className="whitespace-nowrap p-2">
+          <Link href={"/sign-in"} className="whitespace-nowrap p-2">
             Sign In
           </Link>
-          <Link href={"#"} className="whitespace-nowrap p-2">
+          <Link href={"/sign-up"} className="whitespace-nowrap p-2">
             Register
           </Link>
           <div className="flex flex-col justify-center items-center gap-2 p-2">
-            <Button variant="ghost">
+            <Button variant="outline">
               Go to dashboard <ArrowRight className=" h-4 w-6" />
             </Button>
             <Button variant="ghost">

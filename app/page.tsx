@@ -46,10 +46,14 @@ export default function Home() {
         </div>
       </div>
       {/* Pricing Section */}
-      <div className="flex flex-wrap md:flex-nowrap items-center space-between justify-center  gap-5 m-10">
+      <div
+        id="pricing"
+        className="flex flex-wrap md:flex-nowrap items-center space-between justify-center  gap-5 m-10"
+      >
         {pricingInfo &&
-          pricingInfo.map((info) => (
+          pricingInfo.map((info, idx) => (
             <PricingCard
+              key={idx}
               icon={info.icon}
               BillingPlan={info.BillingPlan}
               MonthlyBilling={info.MonthlyBilling}
