@@ -77,7 +77,7 @@ const Navbar = () => {
         </div>
 
         {/* Menu button for smaller screens */}
-        <div className="mNav:hidden m-2 p-5">
+        <div className="lg/3:hidden m-2 p-5">
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
             {menuOpen ? <X /> : <Menu />}
           </Button>

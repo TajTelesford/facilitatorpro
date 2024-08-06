@@ -1,4 +1,5 @@
 import { LucideIcon, SignalHigh, SignalLow, SignalMedium, SignalZero } from "lucide-react"
+import { StaticImageData } from "next/image";
 
 export interface PricingCardProps {
     icon: LucideIcon;
@@ -38,4 +39,10 @@ export const FacilitatorProTiers = () : PricingCardProps[]=> {
 ]
         
     
+}
+
+export interface IntegrationCardProp {
+    onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    apiCallback: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    icon: React.ReactNode
 }
